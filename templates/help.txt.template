@@ -1,0 +1,53 @@
+macOS System Setup Script
+Version: %VERSION%
+
+Usage: %SCRIPT_NAME% [options]
+
+Options:
+    -h, --help              Show this help message and exit
+    -v, --version          Show version information
+    -a, --all              Apply all settings (default)
+    -l, --list             List available modules
+    -b, --backup           Create backup before applying changes
+    -f, --force            Force apply settings without confirmation
+    -n, --no-restart       Skip application/service restarts
+    -c, --cleanup          Run system cleanup operations
+    -d, --dry-run          Show what would be changed without making changes
+    -s, --silent           Suppress all non-error output
+    -V, --verbose          Show detailed output during execution
+
+Module Options:
+    --finder               Configure Finder settings
+    --dock                Configure Dock settings
+    --safari              Configure Safari settings
+    --mail                Configure Mail.app settings
+    --terminal            Configure Terminal settings
+    --system              Configure System settings
+    --input               Configure Input device settings
+    --security            Configure Security settings
+    --cleanup             Run system cleanup operations
+    --no-restart          Don't restart applications after changes
+    --no-log              Disable logging
+    --verbose             Show more detailed output
+
+Examples:
+    # Basic usage
+    %SCRIPT_NAME% -a                       # Apply all settings
+    %SCRIPT_NAME% -l                       # List available modules
+
+    # Module combinations
+    %SCRIPT_NAME% --finder --dock          # Configure only Finder and Dock
+    %SCRIPT_NAME% --security --system      # Configure security and system settings
+
+    # With options
+    %SCRIPT_NAME% -ab                      # Backup and apply all settings
+    %SCRIPT_NAME% -c                       # Run system cleanup
+    %SCRIPT_NAME% -ad --no-restart         # Apply all settings without restarts
+    %SCRIPT_NAME% -d --security            # Preview security changes
+    %SCRIPT_NAME% -af                      # Force apply all settings
+    %SCRIPT_NAME% -aV                      # Apply all with detailed output
+
+    # Complex combinations
+    %SCRIPT_NAME% -bVd --finder --dock     # Backup, verbose dry-run of Finder and Dock
+    %SCRIPT_NAME% -afn --system            # Force apply system settings without restarts
+    %SCRIPT_NAME% -c --verbose             # Run cleanup with detailed output
