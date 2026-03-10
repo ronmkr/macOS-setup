@@ -10,13 +10,16 @@ import (
 
 type BrewModule struct {
 	Engine *core.Engine
+	Config core.BrewConfig
 }
 
 func (m *BrewModule) Name() string { return "brew" }
 func (m *BrewModule) Dependencies() []string { return []string{"developer"} }
 
 func (m *BrewModule) Run() error {
+	if !m.Config.Enabled { return nil }
 	fmt.Println("==> Configuring Homebrew...")
+
 	if err := exec.Command("command", "-v", "brew").Run(); err != nil {
 		fmt.Println("    Installing Homebrew...")
 		if !m.Engine.DryRun {
@@ -26,10 +29,16 @@ func (m *BrewModule) Run() error {
 			}
 		}
 	}
-	brewfile := filepath.Join(".", "config", "Brewfile")
+
+	brewfile := m.Config.BrewfilePath
+	if brewfile == "" {
+		brewfile = filepath.Join(".", "config", "Brewfile")
+	}
+
 	if m.Engine.DryRun {
 		fmt.Printf("[DRY-RUN] Would run 'brew bundle' with %s\n", brewfile)
 		return nil
 	}
+
 	return m.Engine.Ctx.RunAsUser("brew", "bundle", "--file="+brewfile).Run()
 }

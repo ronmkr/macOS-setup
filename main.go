@@ -12,22 +12,32 @@ import (
 func main() {
 	dryRun := flag.Bool("d", false, "Preview changes without applying them")
 	verbose := flag.Bool("v", false, "Show detailed output")
-	configPath := flag.String("c", "", "Path to configuration file (e.g. config/settings.toml)")
+	configPath := flag.String("c", "", "Path to configuration file")
+	restore := flag.Bool("restore", false, "Restore Mac to factory defaults using config/settings_default.toml")
 	flag.Parse()
 
 	var appConfig *core.AppConfig
 	var err error
 
-	if *configPath != "" {
+	if *restore {
+		fmt.Println("!!! RESTORE MODE ENABLED !!!")
+		defaultPath := "config/settings_default.toml"
+		appConfig, err = core.LoadConfig(defaultPath)
+		if err != nil {
+			fmt.Printf("Error: Could not load restore defaults from %s: %v\n", defaultPath, err)
+			os.Exit(1)
+		}
+		fmt.Printf("Restoring settings from: %s\n", defaultPath)
+	} else if *configPath != "" {
 		appConfig, err = core.LoadConfig(*configPath)
 		if err != nil {
 			fmt.Printf("Error loading config: %v\n", err)
 			os.Exit(1)
 		}
 	} else {
-		defaultPath := "config/settings.toml"
-		if _, err := os.Stat(defaultPath); err == nil {
-			appConfig, _ = core.LoadConfig(defaultPath)
+		path := "config/settings.toml"
+		if _, err := os.Stat(path); err == nil {
+			appConfig, _ = core.LoadConfig(path)
 		} else {
 			appConfig = core.GetDefaultConfig()
 		}
@@ -48,7 +58,7 @@ func main() {
 	activeModules := []modules.Module{
 		&modules.SoftwareUpdateModule{Engine: engine, Config: appConfig.SoftwareUpdate},
 		&modules.DeveloperModule{Engine: engine, Config: appConfig.Developer},
-		&modules.BrewModule{Engine: engine},
+		&modules.BrewModule{Engine: engine, Config: appConfig.Brew},
 		&modules.SecurityModule{Engine: engine, Config: appConfig.Security},
 		&modules.SystemModule{Engine: engine, Config: appConfig.System},
 		&modules.InputModule{Engine: engine, Config: appConfig.Input},
@@ -71,5 +81,5 @@ func main() {
 		}
 	}
 
-	engine.Notify("macOS Setup", "Complete!")
+	engine.Notify("macOS Setup", "Operation Complete!")
 }

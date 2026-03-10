@@ -1,0 +1,53 @@
+##########################################################
+# macOS Default Factory Settings
+# 
+# Use this to restore your Mac to its original state.
+##########################################################
+
+[finder]
+enabled = true
+show_all_files = false
+show_extensions = false
+show_path_bar = false
+show_status_bar = false
+view_style = "icnv"
+search_scope = "this"
+screenshots_path = "~/Desktop"
+
+[dock]
+enabled = true
+tile_size = 48
+magnification = false
+large_size = 128
+autohide = false
+show_recent_apps = true
+minimize_effect = "genie"
+position = "bottom"
+
+[system]
+enabled = true
+dark_mode = false
+ui_animations = true
+autohide_menu_bar = false
+clock_show_seconds = false
+
+[input]
+enabled = true
+tap_to_click = false
+three_finger_drag = false
+key_repeat = 6
+initial_key_repeat = 25
+trackpad_speed = 1.0
+natural_scrolling = true
+
+[brew]
+enabled = false
+
+[cleanup]
+enabled = false
+
+[security]
+enabled = true
+firewall = false
+filevault_check = false
+screen_lock_delay = 5
