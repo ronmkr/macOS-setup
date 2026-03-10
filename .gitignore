@@ -1,0 +1,23 @@
+# Binaries
+macos-setup
+bin/
+
+# Go
+go.sum
+vendor/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Project Specific
+logs/
+*.log
+backups/
+config/*.bak
+config/settings.toml.local
