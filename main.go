@@ -14,6 +14,7 @@ func main() {
 	verbose := flag.Bool("v", false, "Show detailed output")
 	configPath := flag.String("c", "", "Path to configuration file")
 	restore := flag.Bool("restore", false, "Restore Mac to factory defaults using config/settings_default.toml")
+	runCleanup := flag.Bool("cleanup", false, "Only run the cleanup module")
 	flag.Parse()
 
 	var appConfig *core.AppConfig
@@ -41,6 +42,13 @@ func main() {
 		} else {
 			appConfig = core.GetDefaultConfig()
 		}
+	}
+
+	// Override config if specific flags are set
+	runOnly := make(map[string]bool)
+	if *runCleanup {
+		runOnly["cleanup"] = true
+		appConfig.Cleanup.Enabled = true
 	}
 
 	ctx, err := core.GetUserContext()
@@ -72,6 +80,10 @@ func main() {
 	fmt.Println("========================================")
 
 	for _, modName := range modules.ExecutionOrder {
+		if len(runOnly) > 0 && !runOnly[modName] {
+			continue
+		}
+
 		for _, mod := range activeModules {
 			if mod.Name() == modName {
 				if err := mod.Run(); err != nil {

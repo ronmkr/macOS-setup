@@ -39,15 +39,30 @@ key_repeat = 6
 initial_key_repeat = 25
 trackpad_speed = 1.0
 natural_scrolling = true
+keyboard_autocorrect = true
+
+[security]
+enabled = true
+firewall = false
+filevault_check = false
+guest_account = true
+screen_lock_delay = 5
 
 [brew]
 enabled = false
 
 [cleanup]
 enabled = false
+empty_trash = false
+clear_caches = false
+downloads_older_than_days = 0
 
-[security]
+[softwareupdate]
 enabled = true
-firewall = false
-filevault_check = false
-screen_lock_delay = 5
+auto_install = false
+
+[developer]
+enabled = false
+git_name = ""
+git_email = ""
+git_editor = ""

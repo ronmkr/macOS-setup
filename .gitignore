@@ -1,10 +1,11 @@
 # Binaries
-macos-setup
+MacPilot
 bin/
 
 # Go
 go.sum
 vendor/
+*.test
 
 # macOS
 .DS_Store
@@ -19,5 +20,6 @@ Icon?
 logs/
 *.log
 backups/
+config/settings.toml
 config/*.bak
 config/settings.toml.local

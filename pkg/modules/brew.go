@@ -15,7 +15,7 @@ type BrewModule struct {
 }
 
 func (m *BrewModule) Name() string { return "brew" }
-func (m *BrewModule) Dependencies() []string { return []string{"developer"} }
+func (m *BrewModule) Dependencies() []string { return []string{"softwareupdate"} }
 
 func (m *BrewModule) Run() error {
 	if !m.Config.Enabled {

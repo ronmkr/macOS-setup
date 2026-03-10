@@ -26,13 +26,18 @@ Because setting up a new Mac (or fixing an old one) should be a "one and done" t
 
 3. **Let it rip:**
    ```bash
-   ./MacPilot -a
+   ./MacPilot
+   ```
+
+4. **Maintenance (Run Cleanup Only):**
+   ```bash
+   ./MacPilot --cleanup
    ```
 
 ## Runtime Config
 Want to use a different profile for work vs. home? Just pass the config file you want:
 ```bash
-./MacPilot -c my-work-config.toml -a
+./MacPilot -c my-work-config.toml
 ```
 
 ## Going Back to Normal

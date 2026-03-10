@@ -2,6 +2,7 @@ package modules
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/ronmkr/MacPilot/pkg/core"
 )
@@ -20,5 +21,15 @@ func (m *SystemModule) Run() error {
 	mode := "Dark"
 	if !m.Config.DarkMode { mode = "Light" }
 	m.Engine.DefaultsWrite("NSGlobalDomain", "AppleInterfaceStyle", mode, "")
-	return nil
+
+	if m.Config.UIAnimations {
+		m.Engine.DefaultsWrite("NSGlobalDomain", "NSAutomaticWindowAnimationsEnabled", "true", "bool")
+	} else {
+		m.Engine.DefaultsWrite("NSGlobalDomain", "NSAutomaticWindowAnimationsEnabled", "false", "bool")
+	}
+
+	m.Engine.DefaultsWrite("NSGlobalDomain", "_HIHideMenuBar", strconv.FormatBool(m.Config.AutohideMenuBar), "bool")
+	m.Engine.DefaultsWrite("com.apple.menuextra.clock", "ShowSeconds", strconv.FormatBool(m.Config.ClockShowSeconds), "bool")
+
+	return m.Engine.RestartApp("SystemUIServer")
 }
