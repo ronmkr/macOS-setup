@@ -1,4 +1,4 @@
-name: Release macOS Setup
+name: Release MacPilot
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            macos-setup
+            MacPilot
             config/settings.toml
             config/Brewfile
           generate_release_notes: true

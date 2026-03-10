@@ -3,7 +3,7 @@ package modules
 import (
 	"fmt"
 
-	"github.com/ronmkr/macos-setup/pkg/core"
+	"github.com/ronmkr/MacPilot/pkg/core"
 )
 
 type SystemModule struct {

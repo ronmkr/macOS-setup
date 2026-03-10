@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/ronmkr/macos-setup/pkg/core"
+	"github.com/ronmkr/MacPilot/pkg/core"
 )
 
 type SoftwareUpdateModule struct {

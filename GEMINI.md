@@ -3,7 +3,7 @@
 This document serves as the primary source of truth for all AI-driven development and maintenance tasks within the `macos-setup` project. Adhere strictly to these guidelines.
 
 ## 1. Project Overview
-`macos-setup` is a professional-grade automation framework for configuring macOS. It has transitioned from a Bash-based modular script to a compiled **Go-based CLI tool** to improve performance, type safety, and error handling.
+`MacPilot` is a professional-grade automation framework for configuring macOS. It has transitioned from a Bash-based modular script to a compiled **Go-based CLI tool** to improve performance, type safety, and error handling.
 
 ## 2. Core Architecture
 The project follows a modular, engine-driven design:

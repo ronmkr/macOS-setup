@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ronmkr/macos-setup/pkg/core"
-	"github.com/ronmkr/macos-setup/pkg/modules"
+	"github.com/ronmkr/MacPilot/pkg/core"
+	"github.com/ronmkr/MacPilot/pkg/modules"
 )
 
 func main() {
@@ -67,7 +67,7 @@ func main() {
 		&modules.CleanupModule{Engine: engine, Config: appConfig.Cleanup},
 	}
 
-	fmt.Printf("Starting macOS Setup Framework\n")
+	fmt.Printf("Starting MacPilot Framework\n")
 	fmt.Printf("User: %s | Mode: %s\n", ctx.UserName, map[bool]string{true: "Dry Run", false: "Apply"}[*dryRun])
 	fmt.Println("========================================")
 
@@ -81,5 +81,5 @@ func main() {
 		}
 	}
 
-	engine.Notify("macOS Setup", "Operation Complete!")
+	engine.Notify("MacPilot", "Operation Complete!")
 }
