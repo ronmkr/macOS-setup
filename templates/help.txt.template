@@ -6,18 +6,17 @@ Usage: %SCRIPT_NAME% [options]
 Options:
     -h, --help              Show this help message and exit
     -v, --version          Show version information
-    -a, --all              Apply all settings (default)
+    -a, --all              Apply all settings (default set)
     -l, --list             List available modules
-    -b, --backup           Create backup before applying changes
-    -f, --force            Force apply settings without confirmation
-    -n, --no-restart       Skip application/service restarts
-    -c, --cleanup          Run system cleanup operations
     -d, --dry-run          Show what would be changed without making changes
-    -s, --silent           Suppress all non-error output
     -V, --verbose          Show detailed output during execution
+    --no-restart           Skip application/service restarts
 
 Module Options:
-    --finder               Configure Finder settings
+    --brew                Homebrew, Casks, and App Store apps
+    --developer           Xcode Tools and dev environments
+    --softwareupdate      macOS system updates
+    --finder              Configure Finder settings
     --dock                Configure Dock settings
     --safari              Configure Safari settings
     --mail                Configure Mail.app settings
@@ -26,28 +25,19 @@ Module Options:
     --input               Configure Input device settings
     --security            Configure Security settings
     --cleanup             Run system cleanup operations
-    --no-restart          Don't restart applications after changes
-    --no-log              Disable logging
-    --verbose             Show more detailed output
+    --backup              Create backup of current settings
 
 Examples:
     # Basic usage
-    %SCRIPT_NAME% -a                       # Apply all settings
-    %SCRIPT_NAME% -l                       # List available modules
-
-    # Module combinations
+    %SCRIPT_NAME% --all                    # Apply default set of settings
+    %SCRIPT_NAME% --brew --developer       # Install tools and dev environment
+    
+    # Dry run (safe preview)
+    %SCRIPT_NAME% -d --all                 # Preview all changes
+    
+    # Specific modules
     %SCRIPT_NAME% --finder --dock          # Configure only Finder and Dock
     %SCRIPT_NAME% --security --system      # Configure security and system settings
 
-    # With options
-    %SCRIPT_NAME% -ab                      # Backup and apply all settings
-    %SCRIPT_NAME% -c                       # Run system cleanup
-    %SCRIPT_NAME% -ad --no-restart         # Apply all settings without restarts
-    %SCRIPT_NAME% -d --security            # Preview security changes
-    %SCRIPT_NAME% -af                      # Force apply all settings
-    %SCRIPT_NAME% -aV                      # Apply all with detailed output
-
-    # Complex combinations
-    %SCRIPT_NAME% -bVd --finder --dock     # Backup, verbose dry-run of Finder and Dock
-    %SCRIPT_NAME% -afn --system            # Force apply system settings without restarts
-    %SCRIPT_NAME% -c --verbose             # Run cleanup with detailed output
+    # Combined
+    %SCRIPT_NAME% --brew --cleanup -V      # Install apps and cleanup with verbose output

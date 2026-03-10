@@ -7,23 +7,29 @@ declare -A MODULE_DEPS=(
     ["safari"]=""
     ["mail"]=""
     ["terminal"]=""
-    ["system"]="security input"
+    ["system"]="security input developer"
     ["input"]=""
     ["security"]=""
     ["cleanup"]="all"
     ["backup"]=""
+    ["brew"]="developer"
+    ["developer"]=""
+    ["softwareupdate"]=""
 )
 
 # Module order (for sequential processing)
 declare -a MODULE_ORDER=(
+    "softwareupdate"
+    "developer"
+    "brew"
     "security"
     "system"
     "input"
     "finder"
     "dock"
     "terminal"
-    "safari"
     "mail"
+    "safari"
     "cleanup"
 )
 
@@ -50,6 +56,12 @@ sort_modules() {
     local -a sorted=()
     local module
 
+    # First, ensure all dependencies are met
+    for module in "${ENABLED_FEATURES[@]}"; do
+        check_module_deps "$module"
+    done
+
+    # Then sort according to MODULE_ORDER
     for module in "${MODULE_ORDER[@]}"; do
         if [[ " ${ENABLED_FEATURES[*]} " =~ " $module " ]]; then
             sorted+=("$module")

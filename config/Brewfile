@@ -1,0 +1,17 @@
+# Homebrew packages (Brews)
+brew "git"
+brew "vim"
+brew "wget"
+brew "jq"
+brew "mas"
+brew "dockutil" # Essential for Dock management
+
+# GUI Applications (Casks)
+cask "visual-studio-code"
+cask "iterm2"
+cask "google-chrome"
+cask "rectangle" # Great for window management
+cask "figma"
+
+# App Store Apps (using mas)
+# mas "Xcode", id: 497799835
