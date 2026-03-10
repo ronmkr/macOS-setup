@@ -14,7 +14,16 @@ type Engine struct {
 
 func (e *Engine) DefaultsWrite(domain, key, val, valType string) error {
 	currentVal, _ := e.Ctx.DefaultsRead(domain, key)
-	if currentVal == val {
+
+	// Boolean normalization loophole fix
+	if valType == "bool" {
+		if (val == "true" && currentVal == "1") || (val == "false" && currentVal == "0") {
+			if e.Verbose {
+				fmt.Printf("  - %s: %s (bool) already set to %s\n", domain, key, val)
+			}
+			return nil
+		}
+	} else if currentVal == val {
 		if e.Verbose {
 			fmt.Printf("  - %s: %s already set\n", domain, key)
 		}

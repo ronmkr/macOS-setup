@@ -15,15 +15,12 @@ type UserContext struct {
 
 func GetUserContext() (*UserContext, error) {
 	isRoot := os.Geteuid() == 0
+	userName := os.Getenv("SUDO_USER")
 	
-	if isRoot {
-		sudoUser := os.Getenv("SUDO_USER")
-		if sudoUser != "" {
-			u, err := user.Lookup(sudoUser)
-			if err != nil {
-				return nil, err
-			}
-			return &UserContext{UserName: sudoUser, HomeDir: u.HomeDir, IsRoot: true}, nil
+	if isRoot && userName != "" {
+		u, err := user.Lookup(userName)
+		if err == nil {
+			return &UserContext{UserName: userName, HomeDir: u.HomeDir, IsRoot: true}, nil
 		}
 	}
 
@@ -31,6 +28,7 @@ func GetUserContext() (*UserContext, error) {
 	if err != nil {
 		return nil, err
 	}
+	
 	return &UserContext{
 		UserName: u.Username,
 		HomeDir:  u.HomeDir,
@@ -62,7 +60,7 @@ func (ctx *UserContext) DefaultsRead(domain, key string) (string, error) {
 		cmd = ctx.RunAsUser("defaults", "read", domain, key)
 	}
 	
-	out, err := cmd.CombinedOutput()
+	out, err := cmd.Output()
 	if err != nil {
 		return "", err
 	}

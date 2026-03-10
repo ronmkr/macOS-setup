@@ -3,7 +3,6 @@ package modules
 import (
 	"fmt"
 	"os"
-	"os/exec"
 
 	"github.com/ronmkr/MacPilot/pkg/core"
 )
@@ -24,7 +23,7 @@ func (m *SoftwareUpdateModule) Run() error {
 		return nil
 	}
 	if m.Config.Auto {
-		cmd := exec.Command("sudo", "softwareupdate", "-i", "-a", "-R")
+		cmd := m.Engine.Ctx.RunAsRoot("softwareupdate", "-i", "-a", "-R")
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		return cmd.Run()

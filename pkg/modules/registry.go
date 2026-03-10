@@ -10,8 +10,8 @@ type Module interface {
 // ExecutionOrder defines the sequence in which modules should be run
 var ExecutionOrder = []string{
 	"softwareupdate",
-	"developer",
 	"brew",
+	"developer",
 	"security",
 	"system",
 	"input",
