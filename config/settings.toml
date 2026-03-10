@@ -1,0 +1,71 @@
+##########################################################
+# macOS Setup Framework - Master Configuration (TOML)
+# 
+# This file behaves like your .bashrc or tmux.conf.
+# Tweak the values below to customize your Mac.
+##########################################################
+
+[finder]
+enabled = true
+show_all_files = true    # Show hidden files (starting with .)
+show_extensions = true   # Always show file extensions
+show_path_bar = true     # Show path breadcrumbs
+show_status_bar = true   # Show disk space/item count
+view_style = "clmv"      # Options: icnv, Nlsv, clmv, glyv
+search_scope = "SCcf"    # Options: SCcf (current folder), this (This Mac)
+screenshots_path = "~/Desktop/Screenshots"
+
+[dock]
+enabled = true
+tile_size = 36           # Icon size
+large_size = 64          # Magnified icon size
+magnification = true     # Enable hover "bubble"
+autohide = true          # Auto-hide the dock
+show_recent_apps = false # Don't show "Recently Opened"
+minimize_effect = "scale" # Options: genie, scale
+position = "bottom"      # Options: bottom, left, right
+
+[system]
+enabled = true
+dark_mode = true         # Enable system-wide Dark Mode
+ui_animations = false    # Disable window animations (faster feel)
+autohide_menu_bar = true # Hide top menu bar automatically
+clock_show_seconds = true 
+
+[input]
+enabled = true
+tap_to_click = true      # Tap trackpad to click
+three_finger_drag = true # Drag windows with three fingers
+key_repeat = 2           # Speed (lower is faster)
+initial_key_repeat = 15  # Delay (lower is faster)
+trackpad_speed = 1.5     # Tracking speed (0.0 to 3.0)
+natural_scrolling = false # Set to true for "iPhone-like" scrolling
+keyboard_autocorrect = false
+
+[security]
+enabled = true
+firewall = true
+filevault_check = true
+guest_account = false
+screen_lock_delay = 0
+
+[brew]
+enabled = true
+use_brewfile = true      # Use config/Brewfile for app lists
+brewfile_path = "config/Brewfile"
+
+[cleanup]
+enabled = true
+empty_trash = true       # Empty trash on run
+clear_caches = true      # Clear ~/Library/Caches
+downloads_older_than_days = 30
+
+[softwareupdate]
+enabled = true
+auto_install = false
+
+[developer]
+enabled = true
+git_name = ""
+git_email = ""
+git_editor = ""
