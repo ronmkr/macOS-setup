@@ -1,4 +1,4 @@
-module github.com/ronmkr/macos-setup
+module github.com/ronmkr/MacPilot
 
 go 1.21
 

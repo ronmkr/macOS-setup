@@ -1,6 +1,6 @@
 .PHONY: build test clean run help dry
 
-BINARY=macos-setup
+BINARY=MacPilot
 
 help:
 	@echo "Usage: make [target]"

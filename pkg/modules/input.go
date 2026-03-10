@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/ronmkr/macos-setup/pkg/core"
+	"github.com/ronmkr/MacPilot/pkg/core"
 )
 
 type InputModule struct {
