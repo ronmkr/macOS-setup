@@ -1,5 +1,0 @@
-# macOS Setup Log Rotation Configuration
-# Location: /etc/newsyslog.d/macos-setup.conf
-
-# logfilename                         [owner:group]    mode count size when  flags
-%logpath%/*.log                       root:wheel      644  5     1000 *     GZ
